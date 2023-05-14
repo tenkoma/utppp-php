@@ -1,0 +1,11 @@
+{
+    "name": "tenkoma/utppp-example",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Koji Tanaka",
+            "email": "tenkoma@gmail.com"
+        }
+    ],
+    "require": {}
+}
