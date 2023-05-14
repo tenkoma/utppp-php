@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<ruleset name="Custom">
+    <arg name="extensions" value="php" />
+
+    <rule ref="PSR12" />
+
+    <exclude-pattern>/vendor/*</exclude-pattern>
+
+    <rule ref="Generic.PHP.DeprecatedFunctions" />
+</ruleset>

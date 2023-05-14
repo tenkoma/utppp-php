@@ -30,6 +30,8 @@
     },
     "scripts": {
         "test": "phpunit",
-        "phpstan": "phpstan analyse --configuration=phpstan.neon"
+        "phpstan": "phpstan analyse --configuration=phpstan.neon",
+        "phpcs": "phpcs .",
+        "phpcbf": "phpcbf ."
     }
 }
