@@ -7,4 +7,5 @@
     <exclude-pattern>/vendor/*</exclude-pattern>
 
     <rule ref="Generic.PHP.DeprecatedFunctions" />
+    <rule ref="Generic.PHP.RequireStrictTypes" />
 </ruleset>
