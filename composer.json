@@ -28,6 +28,7 @@
         "sort-packages": true
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "phpstan": "phpstan analyse --configuration=phpstan.neon"
     }
 }
