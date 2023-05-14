@@ -21,6 +21,7 @@
         "php": ">= 8.2.0"
     },
     "require-dev": {
+        "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.1"
     },
     "config": {
