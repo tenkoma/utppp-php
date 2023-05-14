@@ -7,6 +7,16 @@
             "email": "tenkoma@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Tenkoma\\UtpppExample\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tenkoma\\UtpppExample\\Test\\": "tests/"
+        }
+    },
     "require": {
         "php": ">= 8.2.0"
     },
