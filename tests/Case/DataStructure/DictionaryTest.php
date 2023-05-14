@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Tenkoma\UtpppExample\Test\Case\DataStructure;
 
 use PHPUnit\Framework\TestCase;
-use Tenkoma\UtpppExample\Chapter2\Listing1\Product;
 use Tenkoma\UtpppExample\DataStructure\Dictionary;
 
 class DictionaryTest extends TestCase
