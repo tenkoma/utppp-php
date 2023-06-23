@@ -33,7 +33,7 @@
     "scripts": {
         "test": "phpunit",
         "phpstan": "phpstan analyse --configuration=phpstan.neon",
-        "phpcs": "phpcs .",
+        "phpcs": "phpcs -s .",
         "phpcbf": "phpcbf ."
     }
 }
