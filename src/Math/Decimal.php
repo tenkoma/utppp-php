@@ -12,7 +12,7 @@ class Decimal
     {
     }
 
-    public static function of(string $value): self
+    public static function of(string|int $value): self
     {
         return new self(BigDecimal::of($value));
     }
@@ -20,5 +20,15 @@ class Decimal
     public function isEqualTo(self $that): bool
     {
         return $this->value->isEqualTo($that->value);
+    }
+
+    public function multipliedBy(self $that): self
+    {
+        return new self($this->value->multipliedBy($that->value));
+    }
+
+    public function isGreaterThan(Decimal $that): bool
+    {
+        return $this->value->isGreaterThan($that->value);
     }
 }
