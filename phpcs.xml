@@ -8,4 +8,7 @@
 
     <rule ref="Generic.PHP.DeprecatedFunctions" />
     <rule ref="Generic.PHP.RequireStrictTypes" />
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>*/tests/*</exclude-pattern>
+    </rule>
 </ruleset>
