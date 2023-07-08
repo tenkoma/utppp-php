@@ -20,7 +20,7 @@ class DecimalTest extends TestCase
     #[TestWith(['-1.0', '-1.0'])]
     #[TestWith([1, '1'])]
     #[TestWith([-1, '-1'])]
-    public function 等価である(string|int $value, string|int $expectedValue): void
+    public function isEqualTo(string|int $value, string|int $expectedValue): void
     {
         $sut = Decimal::of($value);
 
@@ -31,7 +31,7 @@ class DecimalTest extends TestCase
     #[TestWith(['2', '3', '6'])]
     #[TestWith(['2', '0.3', '0.6'])]
     #[TestWith(['0.2', '0.3', '0.06'])]
-    public function 積(string $one, string $two, string $expected): void
+    public function multipliedBy(string $one, string $two, string $expected): void
     {
         $sut = Decimal::of($one);
 
@@ -43,7 +43,7 @@ class DecimalTest extends TestCase
     #[TestWith(['2.5', '2', true])]
     #[TestWith(['2.5', '3', false])]
     #[TestWith(['2.5', '2.5', false])]
-    public function より大きい(string $one, string $other, bool $expected): void
+    public function isGreaterThan(string $one, string $other, bool $expected): void
     {
         $sut = Decimal::of($one);
 
