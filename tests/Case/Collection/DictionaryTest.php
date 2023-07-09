@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tenkoma\UtpppExample\Test\Case\DataStructure;
+namespace Tenkoma\UtpppExample\Test\Case\Collection;
 
 use PHPUnit\Framework\TestCase;
-use Tenkoma\UtpppExample\DataStructure\Dictionary;
+use Tenkoma\UtpppExample\Collection\Dictionary;
 
 class DictionaryTest extends TestCase
 {

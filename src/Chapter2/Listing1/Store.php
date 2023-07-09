@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tenkoma\UtpppExample\Chapter2\Listing1;
 
-use Tenkoma\UtpppExample\DataStructure\Dictionary;
+use Tenkoma\UtpppExample\Collection\Dictionary;
 
 class Store
 {

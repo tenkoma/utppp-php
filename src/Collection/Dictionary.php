@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tenkoma\UtpppExample\DataStructure;
+namespace Tenkoma\UtpppExample\Collection;
 
 /**
  * @template TKey
