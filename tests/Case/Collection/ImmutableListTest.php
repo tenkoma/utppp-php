@@ -6,6 +6,7 @@ namespace Tenkoma\UtpppExample\Test\Case\Collection;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Ramsey\Collection\Collection;
 use Tenkoma\UtpppExample\Collection\ImmutableList;
 
 class ImmutableListTest extends TestCase
@@ -34,6 +35,16 @@ class ImmutableListTest extends TestCase
     public function countable(): void
     {
         $sut = new ImmutableList('integer', [1, 2, 3]);
+
+        $this->assertSame(3, count($sut));
+    }
+
+    #[Test]
+    public function createFromCollection(): void
+    {
+        /** @var Collection<integer> $collection */
+        $collection = new Collection('integer', [1, 2, 3]);
+        $sut = ImmutableList::createFromCollection($collection->getType(), $collection);
 
         $this->assertSame(3, count($sut));
     }

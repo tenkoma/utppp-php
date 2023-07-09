@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Tenkoma\UtpppExample\Collection;
 
+use Ramsey\Collection\Collection;
+
 /**
- * @template TKey
- * @template TValue
- * @implements \ArrayAccess<TKey, TValue>
+ * @template ValueType
+ * @implements \ArrayAccess<integer, ValueType>
  */
 class ImmutableList implements \ArrayAccess, \Countable
 {
     /**
      * @param string $type
-     * @param list<TValue> $elements
+     * @param list<ValueType> $elements
      */
     public function __construct(
         private readonly string $type,
@@ -29,6 +30,27 @@ class ImmutableList implements \ArrayAccess, \Countable
         }
     }
 
+    /**
+     * @param string $type
+     * @param Collection<ValueType> $collection
+     * @return self<ValueType>
+     */
+    public static function createFromCollection(string $type, Collection $collection): self
+    {
+        if ($collection->getType() !== $type) {
+            throw new \InvalidArgumentException();
+        }
+
+        // shallow copy
+        $data = [];
+        $source = $collection->toArray();
+        foreach ($source as $element) {
+            $data[] = $element;
+        }
+
+        return new self($type, $data);
+    }
+
     public function getType(): string
     {
         return $this->type;
@@ -40,8 +62,8 @@ class ImmutableList implements \ArrayAccess, \Countable
     }
 
     /**
-     * @param TKey $offset
-     * @return TValue
+     * @param int $offset
+     * @return ValueType
      */
     public function offsetGet(mixed $offset): mixed
     {
