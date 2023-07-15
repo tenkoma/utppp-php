@@ -23,7 +23,9 @@ class UserController
         $companyData = $this->database->getCompany();
         $company = CompanyFactory::create($companyData);
 
-        $user->changeEmail($newEmail, $company);
+        if ($user->canChangeEmail()->isOk()) {
+            $user->changeEmail($newEmail, $company);
+        }
 
         $this->database->saveCompany($company);
         $this->database->saveUser($user);

@@ -16,7 +16,8 @@ class UserFactory
         $id = (int)$data[0];
         $email = (string)$data[1];
         $type = UserType::from((string)$data[2]);
+        $isEmailConfirmed = (bool)$data[3];
 
-        return new User($id, $email, $type);
+        return new User($id, $email, $type, $isEmailConfirmed);
     }
 }

@@ -9,7 +9,8 @@ class User
     public function __construct(
         private int $userId,
         private string $email,
-        private UserType $type
+        private UserType $type,
+        private bool $isEmailConfirmed,
     ) {
     }
 
@@ -28,10 +29,21 @@ class User
         return $this->type;
     }
 
+    public function canChangeEmail(): Result
+    {
+        if ($this->isEmailConfirmed) {
+            return Result::ng("Can't change a confirmed email");
+        }
+
+        return Result::ok();
+    }
+
     public function changeEmail(
         string $newEmail,
         Company $company
     ): void {
+        Precondition::requires($this->canChangeEmail()->isOk());
+
         if ($this->email === $newEmail) {
             return;
         }
