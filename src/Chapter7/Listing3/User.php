@@ -30,28 +30,22 @@ class User
 
     public function changeEmail(
         string $newEmail,
-        string $companyDomainName,
-        int $numberOfEmployees,
-    ): int {
+        Company $company
+    ): void {
         if ($this->email === $newEmail) {
-            return $numberOfEmployees;
+            return;
         }
 
-        $emailDomain = ((array)mb_split('@', $newEmail))[1];
-        $isEmailCorporate = $emailDomain === $companyDomainName;
-        $newType = $isEmailCorporate
+        $newType = $company->isEmailCorporate($newEmail)
             ? UserType::Employee
             : UserType::Customer;
 
         if ($this->type !== $newType) {
             $delta = $newType === UserType::Employee ? 1 : -1;
-            $newNumber = $numberOfEmployees + $delta;
-            $numberOfEmployees = $newNumber;
+            $company->changeNumberOfEmployees($delta);
         }
 
         $this->email = $newEmail;
         $this->type = $newType;
-
-        return $numberOfEmployees;
     }
 }

@@ -29,7 +29,7 @@ class Database
         ];
     }
 
-    public static function saveCompany(int $newNumber): void
+    public static function saveCompany(Company $company): void
     {
     }
 
