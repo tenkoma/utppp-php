@@ -6,9 +6,12 @@ namespace Tenkoma\UtpppExample\Chapter7\Listing2;
 
 class User
 {
-    private int $userId;
-    private string $email;
-    private UserType $type;
+    public function __construct(
+        private int $userId,
+        private string $email,
+        private UserType $type
+    ) {
+    }
 
     public function getUserId(): int
     {
@@ -25,20 +28,14 @@ class User
         return $this->type;
     }
 
-    public function changeEmail(int $userId, string $newEmail): void
-    {
-        $data = Database::getUserById($userId);
-        $this->userId = $userId;
-        $this->email = (string)$data[1];
-        $this->type = UserType::from((string)$data[2]);
-
+    public function changeEmail(
+        string $newEmail,
+        string $companyDomainName,
+        int $numberOfEmployees,
+    ): int {
         if ($this->email === $newEmail) {
-            return;
+            return $numberOfEmployees;
         }
-
-        $companyData = Database::getCompany();
-        $companyDomainName = (string)$companyData[0];
-        $numberOfEmployees = (int)$companyData[1];
 
         $emailDomain = ((array)mb_split('@', $newEmail))[1];
         $isEmailCorporate = $emailDomain === $companyDomainName;
@@ -49,13 +46,12 @@ class User
         if ($this->type !== $newType) {
             $delta = $newType === UserType::Employee ? 1 : -1;
             $newNumber = $numberOfEmployees + $delta;
-            Database::saveCompany($newNumber);
+            $numberOfEmployees = $newNumber;
         }
 
         $this->email = $newEmail;
         $this->type = $newType;
 
-        Database::saveUser($this);
-        MessageBus::sendEmailChangedMessage($userId, $newEmail);
+        return $numberOfEmployees;
     }
 }
