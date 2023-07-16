@@ -4,14 +4,20 @@ declare(strict_types=1);
 
 namespace Tenkoma\UtpppExample\Chapter7\Listing12;
 
+use Ramsey\Collection\Collection;
+
 class User
 {
+    /** @var Collection<EmailChangedEvent> */
+    readonly public Collection $emailChangedEvents;
+
     public function __construct(
         private int $userId,
         private string $email,
         private UserType $type,
         private bool $isEmailConfirmed,
     ) {
+        $this->emailChangedEvents = new Collection(EmailChangedEvent::class);
     }
 
     public function getUserId(): int
@@ -59,5 +65,8 @@ class User
 
         $this->email = $newEmail;
         $this->type = $newType;
+        $this->emailChangedEvents->add(
+            new EmailChangedEvent($this->userId, $this->email)
+        );
     }
 }
